@@ -1,42 +1,39 @@
 import { count } from "console";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 
-function GetInputValue() {
-  const [letter, setLetter] = useState("");
-  const [counter, setCounter] = useState(0);
-  const letterCount = useRef(0);
+interface Properties {
+  userText: string;
+  setUserText: (string) => void;
+}
+
+function GetInputValue({ userText, setUserText }: Properties) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const myWords: string[] = [];
-
   let getValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLetter(event.target.value);
-    myWords.push(event.target.value);
-    console.log(myWords);
-    console.log(letterCount);
-    console.log(event.target.value[counter]);
-    console.log(counter);
-    setCounter(counter + 1);
+    setUserText(event.target.value);
+    // console.log(event.target.value);
   };
-
-  console.log(inputRef);
 
   let restart = () => {
     if (inputRef && inputRef.current) {
       inputRef.current.focus();
+      setUserText("");
       inputRef.current.value = "";
     }
-    setCounter(counter - counter);
-    setLetter("");
   };
 
   return (
-    <div>
-      <input ref={inputRef} type="text" onChange={getValue} />
-      <div>{letter}</div>
-      <p>{letterCount.current}</p>
-      <p>{counter}</p>
-      <button onClick={restart}>Restart</button>
+    <div className="flex flex-col items-center">
+      <input
+        ref={inputRef}
+        type="text"
+        onChange={getValue}
+        className="w-[10rem] h-[3rem] border-2 rounded-lg font-size mt-5 opacity-0"
+      />
+      <p className="text-white mt-10">{userText.length}</p>
+      <button className="text-white" onClick={restart}>
+        Restart
+      </button>
     </div>
   );
 }
