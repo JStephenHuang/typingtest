@@ -14,7 +14,7 @@ function Word({ word, wordState }: Properties) {
     );
   }
 
-  return <span>{letters}</span>;
+  return <span className="flex inline-block">{letters}</span>;
 }
 
 export default Word;
