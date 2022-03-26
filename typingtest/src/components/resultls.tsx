@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
@@ -15,8 +15,8 @@ interface Properties {
   setResults: (boolean) => void;
   time: number;
   setTime: (number) => void;
-  setFocused: (boolean) => void;
   results: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
 }
 
 const Results = ({
@@ -25,18 +25,19 @@ const Results = ({
   setResults,
   time,
   setTime,
-  setFocused,
   results,
+  inputRef,
 }: Properties) => {
   const errorsCount = useRef<number>(0);
-
-  const back = () => {
+  const back = useCallback(() => {
+    FState.current = "";
     setResults(false);
     setTime(0);
-    setFocused(false);
-  };
+    if (inputRef && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [results]);
   let errors = 0;
-
   const getErrors = () => {
     for (let i: number = 0; i < FState.current.length; i++) {
       let char = FState.current[i];
@@ -47,8 +48,10 @@ const Results = ({
     return errors;
   };
   errorsCount.current = getErrors();
+
   console.log(lengthCount.current);
   console.log(errorsCount.current);
+  console.log(Math.floor((time / 1000) % 60) / 3);
   console.log(results);
   // useEffect(() => {
   //   getErrors();
@@ -58,14 +61,14 @@ const Results = ({
   const percentage = () => {
     return (
       Math.floor(
-        ((lengthCount.current - errorsCount.current) * 3) /
-          (Math.floor((time / 1000) % 60) / 3)
+        ((lengthCount.current - errorsCount.current) * 1.5) /
+          Math.floor(((time / 1000) % 60) / 3)
       ) + "%"
     );
   };
-
+  console.log(percentage());
   return (
-    <div className="flex flex-col items-center justify-center bg-neutral-800 h-screen text-white text-[24px]">
+    <div className="flex flex-col items-center justify-center text-white text-[24px]">
       <p className="">You are</p>
       <p className="text-amber-300">{percentage()}</p>
       <p className="">asian</p>

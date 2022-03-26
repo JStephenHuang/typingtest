@@ -10,8 +10,12 @@ export const compareAlgorithm = (
   let word = targetWord;
   let wordState = "";
 
-  let shorterLength = Math.min(userWord.length, targetWord.length);
+  const hasNullChar = userWord[userWord.length - 1] === "\0";
+  const userWordLength = hasNullChar ? userWord.length - 1 : userWord.length;
+  const shorterLength = Math.min(userWordLength, targetWord.length);
+
   let i = 0;
+
   for (; i < shorterLength; i++) {
     if (userWord[i] === targetWord[i]) {
       wordState += "g";
@@ -19,14 +23,18 @@ export const compareAlgorithm = (
       wordState += "r";
     }
   }
+  for (; i < userWordLength; i++) {
+    wordState += "e";
+    word += userWord[i];
+  }
+
+  if (hasNullChar) {
+    wordState += "c";
+    word += " ";
+  }
 
   for (; i < targetWord.length; i++) {
     wordState += "x";
-  }
-
-  for (; i < userWord.length; i++) {
-    wordState += "e";
-    word += userWord[i];
   }
 
   return { word, wordState };

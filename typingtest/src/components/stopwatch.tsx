@@ -4,15 +4,10 @@ interface Properties {
   time: number;
   setTime: (number) => void;
   running: boolean;
-  setRunning: (boolean) => void;
+  setFocused: (boolean) => void;
 }
 
-const Stopwatch = ({ time, setTime, running, setRunning }: Properties) => {
-  const reset = () => {
-    setTime(0);
-    setRunning(false);
-  };
-
+const Stopwatch = ({ time, setTime, running, setFocused }: Properties) => {
   useEffect(() => {
     let interval;
     if (running) {
@@ -24,10 +19,14 @@ const Stopwatch = ({ time, setTime, running, setRunning }: Properties) => {
     }
     return () => clearInterval(interval);
   }, [running]);
-
   return (
-    <div className="flex flex-col mt-16 text-white text-[24px]">
-      <span>{Math.floor((time / 1000) % 60) + "s"}</span>
+    <div
+      className="flex flex-col mt-[10rem] text-white text-[24px]"
+      onClick={() => {
+        setFocused(false);
+      }}
+    >
+      <span>{Math.floor((time / 1000) % 100) + "s"}</span>
     </div>
   );
 };
