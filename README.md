@@ -7,3 +7,9 @@ It was a idea my friend came up with. My friend loved monkeytype and he told me 
 To open the app, cd into typing-app, open an terminal and write 
 
     "yarn start".
+
+App is now online: 
+
+Click link to open:
+
+    "https://asiantype.herokuapp.com/"
