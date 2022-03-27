@@ -12,4 +12,4 @@ App is now online:
 
 Click link to open:
 
-    "https://asiantype.herokuapp.com/"
+    https://asiantype.herokuapp.com/
