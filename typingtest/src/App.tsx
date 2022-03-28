@@ -23,17 +23,18 @@ function App() {
 
   return (
     <div className={`flex flex-col items-center h-screen z-[5]`}>
-      <div className="text-[36px] mt-10 z-20">
+      <div className="text-[36px] lg:mt-10 mt-5 z-20">
         <span className="text-amber-300">asian</span>
         <span className="text-white">type</span>
       </div>
+
       <ToggleLanguage
         language={language}
         setLanguage={setLanguage}
         setRunning={setRunning}
         setTime={setTime}
       ></ToggleLanguage>
-      <div className="grid place-items-center h-[50rem]">
+      <div className="main">
         {results ? (
           <div className="z-10">
             <Results
@@ -89,11 +90,22 @@ function App() {
           </div>
         )}
       </div>
-
       <div
         className="bg-neutral-800 absolute w-screen h-screen z-[6]"
         onClick={() => setFocused(false)}
       ></div>
+      <p className="z-10 text-white text-[12px] xl:mt-[15rem] lg:mt-[3rem] mt-[12rem]">
+        by Stephen Huang
+      </p>
+      <div className="flex z-10">
+        <p className="text-white text-[12px] mr-1">inspired by</p>
+        <a
+          className="text-white text-[12px] underline"
+          href="https://monkeytype.com/"
+        >
+          monkeytype
+        </a>
+      </div>
     </div>
   );
 }

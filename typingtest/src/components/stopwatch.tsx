@@ -21,7 +21,7 @@ const Stopwatch = ({ time, setTime, running, setFocused }: Properties) => {
   }, [running]);
   return (
     <div
-      className="flex flex-col mt-[10rem] text-white text-[24px]"
+      className="timer"
       onClick={() => {
         setFocused(false);
       }}

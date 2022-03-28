@@ -26,7 +26,7 @@ function ToggleLanguage({
 
   if (language === "asian") {
     return (
-      <span className="z-10 mt-5">
+      <span className="z-10 lg:mt-5 mt-2">
         <span
           className="text-amber-300 mr-3 ease-in-out duration-200"
           onClick={toggleAsian}
@@ -43,7 +43,7 @@ function ToggleLanguage({
     );
   } else if (language === "english") {
     return (
-      <span className="z-10 mt-5">
+      <span className="z-10 lg:mt-5 mt-2">
         <span
           className="text-white mr-3 ease-in-out duration-200"
           onClick={toggleAsian}

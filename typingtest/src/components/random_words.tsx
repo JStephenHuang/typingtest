@@ -127,12 +127,11 @@ function RandomWordBank({
   // ! Returned to the interface
 
   return (
-    <div className="mt-16 flex-wrap" onClick={() => setFocused(!focused)}>
-      <p
-        className={`relative flex flex-wrap content-start text-[36px] h-[8rem] w-[60rem] tracking-[.10em] ease-in-out duration-300 ${
-          focused ? "blur-none" : "blur-sm"
-        }`}
-      >
+    <div
+      className="xl:mt-12 lg:mt-10 mt-5 flex-wrap"
+      onClick={() => setFocused(!focused)}
+    >
+      <p className={`random-words ${focused ? "blur-none" : "blur-sm"}`}>
         {words}
       </p>
     </div>

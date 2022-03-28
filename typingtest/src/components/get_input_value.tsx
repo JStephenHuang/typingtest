@@ -126,17 +126,16 @@ function GetInputValue({
         onKeyPress={spaceBoolean ? undefined : NoSpace}
         onKeyDown={typeAbility ? undefined : onlySpace}
         tabIndex={-1}
+        autoCapitalize="none"
+        autoComplete="off"
+        autoCorrect="off"
         className="w-[10rem] h-[3rem] border-2 rounded-lg font-size opacity-0 fixed -bottom-16"
       />
       <div className="flex flex-col items-center">
-        <p className="text-white mt-[8rem] text-[24px]" tabIndex={-1}>
-          {userText.length}
+        <p className="user-text-length" tabIndex={-1}>
+          {userText.length - 1}
         </p>
-        <button
-          className="text-[24px] mt-10 animate-spin-slow z-20"
-          tabIndex={0}
-          onClick={restart}
-        >
+        <button className="restart-button" tabIndex={0} onClick={restart}>
           {refresh}
         </button>
       </div>
