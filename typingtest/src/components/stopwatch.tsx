@@ -13,7 +13,7 @@ const Stopwatch = ({ time, setTime, running, setFocused }: Properties) => {
     if (running) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
-      }, 10);
+      }, 9);
     } else if (!running) {
       clearInterval(interval);
     }
@@ -26,7 +26,7 @@ const Stopwatch = ({ time, setTime, running, setFocused }: Properties) => {
         setFocused(false);
       }}
     >
-      <span>{Math.floor((time / 1000) % 100) + "s"}</span>
+      <span>{Math.floor(time / 1000) + "s"}</span>
     </div>
   );
 };

@@ -37,6 +37,9 @@ const Results = ({
       inputRef.current.focus();
     }
   }, [results]);
+
+  time = time / 1000;
+
   let errors = 0;
   const getErrors = () => {
     for (let i: number = 0; i < FState.current.length; i++) {
@@ -49,32 +52,57 @@ const Results = ({
   };
   errorsCount.current = getErrors();
 
-  console.log(lengthCount.current);
-  console.log(errorsCount.current);
-  console.log(Math.floor((time / 1000) % 60) / 3);
-  console.log(results);
   // useEffect(() => {
   //   getErrors();
   // }, [results]);
 
-  console.log(Math.floor((time / 1000) % 60));
   const percentage = () => {
-    return (
-      Math.floor(
-        ((lengthCount.current - errorsCount.current) * 1.5) /
-          Math.floor(((time / 1000) % 60) / 3)
-      ) + "%"
+    let score = Math.floor(
+      ((lengthCount.current - errorsCount.current) * 1.5) /
+        Math.floor(time / 5.5)
     );
+
+    if (score < 0 || Math.floor(time / 5.5) === 0) {
+      return 0 + "%";
+    }
+    return score + "%";
   };
+
+  const wordsPerSecond = () => {
+    let words = lengthCount.current - errorsCount.current;
+    if (words / 10 < 0) {
+      return 0;
+    }
+    return Math.floor(words / 10 / (time / 60));
+  };
+
+  const accuracy = () => {
+    let percent =
+      (lengthCount.current - errorsCount.current) / lengthCount.current;
+    return Math.floor(percent * 100);
+  };
+
   console.log(percentage());
   return (
-    <div className="flex flex-col items-center justify-center text-white text-[24px]">
-      <p className="">You are</p>
-      <p className="text-amber-300">{percentage()}</p>
-      <p className="">asian</p>
-      <button className="mt-10 animate-spin-slow" onClick={back}>
-        {refresh}
-      </button>
+    <div className="flex flex-col">
+      <div className="asian-stats">
+        <div className="flex flex-col items-center">
+          <p className="ml-2">wpm:</p>
+          <p className="text-amber-300">{wordsPerSecond()} words</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="ml-2">accuracy:</p>
+          <p className="text-amber-300">{accuracy()}% </p>
+        </div>
+      </div>
+      <div className="asian-percentage">
+        <p className="">You are</p>
+        <p className="text-amber-300">{percentage()}</p>
+        <p className="">asian</p>
+        <button className="restart-button" onClick={back}>
+          {refresh}
+        </button>
+      </div>
     </div>
   );
 };

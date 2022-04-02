@@ -67,7 +67,6 @@ function RandomWordBank({
   // ! Loop for our words
 
   let textState: string = "";
-  let j: number = 0;
   for (let i = 0; i < sentence.length; i++) {
     let word: string;
     let wordState: string;
@@ -115,6 +114,7 @@ function RandomWordBank({
 
     console.log(FState.current);
     console.log(userWordList);
+    console.log(sentence);
   }, [userText]);
 
   useEffect(() => {

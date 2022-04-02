@@ -99,7 +99,7 @@ function GetInputValue({
 
   // ! Conditions
 
-  if (Math.floor((time / 1000) % 101) === 100 || userText.length === 1000) {
+  if (Math.floor(time / 1000) === 100 || userText.length === 1000) {
     setResults(true);
     setRunning(false);
   }
