@@ -58,11 +58,10 @@ const Results = ({
 
   const percentage = () => {
     let score = Math.floor(
-      ((lengthCount.current - errorsCount.current) * 1.5) /
-        Math.floor(time / 5.5)
+      ((lengthCount.current - errorsCount.current) * 1.5) / Math.floor(time / 9)
     );
 
-    if (score < 0 || Math.floor(time / 5.5) === 0) {
+    if (score < 0 || Math.floor(time / 9) === 0) {
       return 0 + "%";
     }
     return score + "%";
