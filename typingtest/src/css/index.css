@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-zinc-800
+}
+
 @layer components {
   .random-words {
     @apply relative h-[8rem] xl:w-[60rem] lg:w-[40rem] md:w-[30rem] w-[15rem] flex flex-wrap content-start xl:text-[36px] lg:text-[24px] md:text-[20px] text-[16px] ease-in-out duration-300;
@@ -20,7 +24,7 @@
   }
 
   .timer {
-    @apply flex flex-col text-white xl:mt-[10rem] lg:mt-[3rem] mt-[2rem] xl:text-[24px] lg:text-[18px] text-[12px];
+    @apply flex flex-col text-white xl:mt-[5rem] lg:mt-[3rem] mt-[2rem] xl:text-[24px] lg:text-[18px] text-[12px];
   }
 
   .main {

@@ -91,13 +91,13 @@ function App() {
         )}
       </div>
       <div
-        className="bg-neutral-800 absolute w-screen h-screen z-[6]"
+        className="absolute w-screen h-screen z-[6]"
         onClick={() => setFocused(false)}
       ></div>
-      <p className="z-10 text-white text-[12px] xl:mt-[15rem] lg:mt-[3rem] mt-[12rem]">
+      <p className="z-10 text-white text-[12px] xl:mt-[1rem] lg:mt-[3rem] mt-[1.5rem]">
         by Stephen Huang
       </p>
-      <div className="flex z-10">
+      <div className="flex z-10 mb-[3rem]">
         <p className="text-white text-[12px] mr-1">inspired by</p>
         <a
           className="text-white text-[12px] underline"
